@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GALADIMA JAMB TRAINING AND SKILLS CENTER</title>
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #c5864a;
+            color: #202221;
+
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: #06ac06;
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(43, 39, 39, 0.1);
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+        
+        .logo span {
+            color: #3d0597;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 20px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: #08df85;
+        }
+        
+        /* Main Content Styles */
+        main {
+            min-height: calc(100vh - 160px);
+            padding: 40px 0;
+        }
+        
+        .section {
+            display: none;
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        
+        .active {
+            display: block;
+        }
+        
+        h1, h2, h3 {
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+        
+        p {
+            margin-bottom: 15px;
+        }
+        /* Service Box Styles */
+        .service-boxes {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 10px;
+        }
+
+        .service-box {
+            background-color: #fff;
+            padding: 40px;
+            width: 250px;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-box h3 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #9e9595;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        
+        .radio-group {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .radio-option {
+            display: flex;
+            align-items: center;
+        }
+        
+        .radio-option input {
+            margin-right: 8px;
+        }
+        
+        button {
+            background-color: #0c0c0c;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        
+        button:hover {
+            background-color: #07c767;
+        }
+        
+        .btn-secondary {
+            background-color: #5ac28e;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #5a8a8d;
+        }
+        
+        /* Upload and Face Verification Styles */
+        .upload-container {
+            border: 2px dashed #03fc6b;
+            padding: 30px;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .camera-container {
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto 20px;
+            border: 1px solid #2ba153;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        #video {
+            width: 100%;
+            height: auto;
+        }
+        
+        .verification-result {
+            padding: 15px;
+            border-radius: 4px;
+            margin: 20px 0;
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        .success {
+            background-color: #d4edda;
+            color: #04701e;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .error {
+            background-color: #f8d7da;
+            color: #f00c23;
+            border: 1px solid #f5c6cb;
+        }
+        
+        /* Payment Styles */
+        .payment-methods {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .payment-method {
+            flex: 1;
+            border: 1px solid #b18e8e;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .payment-method:hover {
+            border-color: #04e059;
+            background-color: #a8bcd1;
+        }
+        
+        .payment-method.selected {
+            border-color: #04e64f;
+            background-color: #a9bfce;
+        }
+        
+        /* Course Selection Styles */
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .course-card {
+            background-color: #85617f;
+            border: 1px solid #6f5374;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .course-card:hover {
+            border-color: #0af363;
+            background-color: #e8f4fc;
+        }
+        
+        .course-card.selected {
+            border-color: #0ae264;
+            background-color: #3498db;
+            color: white;
+        }
+        
+        /* Exam Styles */
+        .exam-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .question-container {
+            margin-bottom: 30px;
+        }
+        
+        .question-number {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #097df1;
+        }
+        
+        .question-text {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .option {
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .option:hover {
+            background-color: #f8f9fa;
+        }
+        
+        .option.selected {
+            background-color: #3498db;
+            color: white;
+            border-color: #08e43f;
+        }
+        
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        
+        /* Footer Styles */
+        footer {
+            background-color: #262726;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 40px;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .logo-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 15px;
+                justify-content: center;
+            }
+            
+            .payment-methods {
+                flex-direction: column;
+            }
+            
+            .course-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+        }
+        h1 i {
+            color: #0e7704;
+        }
+        /* services */
+        p {
+            align-items: center;
+        }
+        p em i b {
+            color:#4709f1
+        }
+        p b em i {
+            color: chocolate;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo-container">
+                <div class="logo">GALADIMA <span>JAMB</span> TRAINING AND SKILLS CENTER</div>
+                <nav>
+                    <ul>
+                        <li><a href="#" class="nav-link" data-target="home">Home</a></li>
+                        <li><a href="#" class="nav-link" data-target="about">About Us</a></li>
+                        <li><a href="#" class="nav-link" data-target="contact">Contact Us</a></li>
+                        <li><a href="#" class="nav-link" data-target="location">Location</a></li>
+                        <li><a href="#" class="nav-link" data-target="registration">Register</a></li>
+                        <li><a href="#" class="nav-link" data-target="our Service">service</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <!-- Home Section -->
+            <section id="home" class="section active">
+                <h1><i>WELL COME TO GALADIMA JAMB TRAINING AND SKILLS CENTER</i></h1>
+                <p><h3>Your premier destination for JAMB examination preparation and skills development. We provide comprehensive training to help students excel in their JAMB examinations and acquire valuable skills for future success.</h3></p>
+                <p><h3>Our experienced instructors and modern teaching methods ensure that you receive the best preparation possible for your JAMB exams.</h3></p>
+                <button class="btn-primary" onclick="showSection('registration')">Get Started</button>
+            </section>
+
+            <!-- About Us Section -->
+            <section id="about" class="section">
+                <h2>About Us</h2>
+                <p>GALADIMA JAMB TRAINING AND SKILLS CENTER has been at the forefront of JAMB examination preparation for over a decade. Our mission is to equip students with the knowledge, skills, and confidence needed to excel in their JAMB examinations and beyond.</p>
+                <p>We offer comprehensive training in all JAMB subjects, including English Language, Mathematics, Biology, Physics, Chemistry, and more. Our approach combines traditional teaching methods with modern technology to create an engaging and effective learning environment.</p>
+                <h3>Our Vision</h3>
+                <p>To be the leading JAMB training center in Nigeria, producing students who not only excel in their examinations but also develop essential skills for lifelong success.</p>
+            </section>
+
+            <!-- Contact Us Section -->
+            <section id="contact" class="section">
+                <h2>Contact Us</h2>
+                <p>We'd love to hear from you. Get in touch with us using the information below:</p>
+                <div class="contact-info">
+                    <p><strong>Address:</strong> takai local govrnment, kano state,  Knowledge City,  Nigeria</p>
+                    <p><strong>Phone:</strong> +234 7065261937</p>
+                    <p><strong>Email:</strong> sulaimangaladima126@gmail.com</p>
+                    <p><strong>Office Hours:</strong> Monday - Friday, 8:00 AM - 6:00 PM</p>
+                </div>
+                <h3>Send us a Message</h3>
+                <form id="contact-form">
+                    <div class="form-group">
+                        <label for="contact-name">Your Name</label>
+                        <input type="text" id="contact-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-email">Your Email</label>
+                        <input type="email" id="contact-email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-message">Your Message</label>
+                        <textarea id="contact-message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit">Send Message</button>
+                </form>
+            </section>
+
+            <!-- Location Section -->
+            <section id="location" class="section">
+                <h2>Our Location</h2>
+                <p>Visit our center at the following location:</p>
+                <div class="map-placeholder">
+                    <div style="background-color: #c0c780; padding: 40px; text-align: center; border-radius: 8px;">
+                        <h3>Map of Our Location</h3>
+                        <p><em>takai local govrnment,  kano state,  Knowledge City,  Nigeria</em></p>
+                        <p><em>Interactive map would be displayed here in a real implementation</em></p>
+                    </div>
+                </div>
+                <h3>How to Reach Us</h3>
+                <p>Our center is easily accessible by public transportation. If you're coming by bus, take routes 12, 15, or 23 and get off at the Education Street stop. We're located just 200 meters from the bus stop.</p>
+            </section>
+
+            <!-- Registration Section -->
+            <section id="registration" class="section">
+                <h2>Registration Form</h2>
+                <form id="registration-form">
+                    <div class="form-group">
+                        <label for="full-name">Full Name</label>
+                        <input type="text" id="full-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Gender</label>
+                        <div class="radio-group">
+                            <div class="radio-option">
+                                <input type="radio" id="male" name="gender" value="male" required>
+                                <label for="male">Male</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="female" name="gender" value="female">
+                                <label for="female">Female</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="others" name="gender" value="others">
+                                <label for="others">Others</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="photo-upload">Upload Your Photo</label>
+                        <div class="upload-container">
+                            <input type="file" id="photo-upload" accept="image/*" required>
+                            <p><b><em><i>Please upload a clear, recent passport photograph</i></em></b></p>
+                        </div>
+                    </div>
+                    <button type="button" onclick="showSection('payment')">Continue to Payment</button>
+                </form>
+            </section>
+        <!-- Services Section -->
+            <div class="services" id="services">
+            <h1 style="align-items: center;"><i><b><em> my Services</em></b></i></h1>
+            <p><h3> offer a variety of services to meet your business needs:</h3></p>
+            <div class="service-boxes">
+            <div class="service-box">
+                <h3><i>jamb training</i></h3>
+                <p><i><em><b>We offer comprehensive training in all JAMB subjects,</b></em></i></p>
+            </div>
+            <div class="service-box">
+                <h3><i>Web Development</i></h3>
+                <p><i><em><b> Building custom, scalable web applications tailored to your business needs.</b></em></i></p>
+            </div>
+            <div class="service-box">
+                <h3><i>our school</i></h3>
+                <p><i><em><b>we are leading a young boys/girls to be a speacialist in computer within 6 month.<p>your son must be atlist 10 years</p>.</b></em></i></p>
+            </div>
+        </div>
+    </div>
+
+            <!-- Payment Section -->
+            <section id="payment" class="section">
+                <h2>Payment Method</h2>
+                <p>Please select your preferred payment method:</p>
+                <div class="payment-methods">
+                    <div class="payment-method" onclick="selectPaymentMethod('transfer')">
+                        <h3>Bank Transfer</h3>
+                        <p>Transfer funds directly to our bank account</p>
+                    </div>
+                    <div class="payment-method" onclick="selectPaymentMethod('card')">
+                        <h3>Credit/Debit Card</h3>
+                        <p>Pay securely with your card</p>
+                    </div>
+                </div>
+                <div id="transfer-details" class="payment-details" style="display: none;">
+                    <h3>Bank Transfer Details</h3>
+                    <p><strong>Bank Name:</strong> keystone bank</p>
+                    <p><strong>Account Name:</strong> GALADIMA SULAIMAN</p>
+                    <p><strong>Account Number:</strong> 6045916607</p>
+                    <p>,<em><i><b> making the transfer, please upload proof of payment:</b></i></em></p>
+                    <input type="file" id="proof-upload">
+                </div>
+                <div id="card-details" class="payment-details" style="display: none;">
+                    <h3>Card Details</h3>
+                    <div class="form-group">
+                        <label for="card-number">Card Number</label>
+                        <input type="text" id="card-number" placeholder="1234 5678 9012 3456">
+                    </div>
+                    <div class="form-group">
+                        <label for="card-name">Name on Card</label>
+                        <input type="text" id="card-name">
+                    </div>
+                    <div class="form-group" style="display: flex; gap: 15px;">
+                        <div style="flex: 1;">
+                            <label for="expiry-date">Expiry Date</label>
+                            <input type="text" id="expiry-date" placeholder="MM/YY">
+                        </div>
+                        <div style="flex: 1;">
+                            <label for="cvv">CVV</label>
+                            <input type="text" id="cvv" placeholder="123">
+                        </div>
+                    </div>
+                </div>
+                <div style="margin-top: 20px;">
+                    <button type="button" onclick="processPayment()">Complete Payment</button>
+                </div>
+            </section>
+
+            <!-- Face Verification Section -->
+            <section id="face-verification" class="section">
+                <h2>Face Verification</h2>
+                <p>Please allow camera access for face verification. This helps ensure the integrity of the examination process.</p>
+                <div class="camera-container">
+                    <video id="video" autoplay></video>
+                </div>
+                <div style="text-align: center;">
+                    <button onclick="captureFace()">Capture Face</button>
+                </div>
+                <div id="verification-result" class="verification-result" style="display: none;"></div>
+                <div id="next-button" style="text-align: center; margin-top: 20px; display: none;">
+                    <button onclick="showSection('course-selection')">Next</button>
+                </div>
+            </section>
+
+            <!-- Course Selection Section -->
+            <section id="course-selection" class="section">
+                <h2>Select Your Course</h2>
+                <p><em><i><b>Please choose the course you would like to take the examination for:<b></b></i></em></p>
+                <div class="course-grid">
+                    <div class="course-card" onclick="selectCourse('English Language')">English Language</div>
+                    <div class="course-card" onclick="selectCourse('Mathematics')">Mathematics</div>
+                    <div class="course-card" onclick="selectCourse('Biology')">Biology</div>
+                    <div class="course-card" onclick="selectCourse('Physics')">Physics</div>
+                    <div class="course-card" onclick="selectCourse('Chemistry')">Chemistry</div>
+                    <div class="course-card" onclick="selectCourse('Islamic Studies')">Islamic Studies</div>
+                    <div class="course-card" onclick="selectCourse('Civic Education')">Civic Education</div>
+                    <div class="course-card" onclick="selectCourse('Hausa Language')">Hausa Language</div>
+                    <div class="course-card" onclick="selectCourse('Economics')">Economics</div>
+                    <div class="course-card" onclick="selectCourse('Agriculture')">Agriculture</div>
+                </div>
+                <div id="course-confirmation" style="text-align: center; margin-top: 30px; display: none;">
+                    <h3 id="selected-course-message"></h3>
+                    <button onclick="showSection('exam-instructions')">Start Examination</button>
+                </div>
+            </section>
+
+            <!-- Exam Instructions Section -->
+            <section id="exam-instructions" class="section">
+                <h2>Examination Instructions</h2>
+                <div class="instructions">
+                    <p>Please read the following instructions carefully before starting your examination:</p>
+                    <ul style="margin-left: 20px; margin-bottom: 20px;">
+                        <li>You have 60 minutes to complete the examination</li>
+                        <li>The examination consists of 50 multiple-choice questions</li>
+                        <li>Each question has four options (A, B, C, D)</li>
+                        <li>Select the correct answer by clicking on it</li>
+                        <li>You can navigate between questions using the Previous and Next buttons</li>
+                        <li>Once you submit your answers, you cannot change them</li>
+                        <li>Do not refresh the page during the examination</li>
+                    </ul>
+                    <p>Click the button below to begin your examination.</p>
+                </div>
+                <div style="text-align: center;">
+                    <button onclick="startExam()">Begin Examination</button>
+                </div>
+            </section>
+
+            <!-- Exam Section -->
+            <section id="exam" class="section">
+                <h2 id="exam-course-name">Examination</h2>
+                <div class="exam-container">
+                    <div class="question-container">
+                        <div class="question-number" id="question-number">Question 1 of 50</div>
+                        <div class="question-text" id="question-text">This is a sample question text that would be replaced with actual questions in a real implementation.</div>
+                        <div class="options" id="options-container">
+                            <div class="option" onclick="selectOption(0)">Option A</div>
+                            <div class="option" onclick="selectOption(1)">Option B</div>
+                            <div class="option" onclick="selectOption(2)">Option C</div>
+                            <div class="option" onclick="selectOption(3)">Option D</div>
+                        </div>
+                    </div>
+                    <div class="navigation-buttons">
+                        <button class="btn-secondary" onclick="previousQuestion()" id="prev-button" disabled>Previous</button>
+                        <button onclick="nextQuestion()" id="next-exam-button">Next</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 GALADIMA JAMB TRAINING AND SKILLS CENTER. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Navigation functionality
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = this.getAttribute('data-target');
+                showSection(target);
+            });
+        });
+
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Show the selected section
+            document.getElementById(sectionId).classList.add('active');
+        }
+
+        // Payment method selection
+        let selectedPaymentMethod = '';
+        
+        function selectPaymentMethod(method) {
+            selectedPaymentMethod = method;
+            
+            // Update UI
+            document.querySelectorAll('.payment-method').forEach(el => {
+                el.classList.remove('selected');
+            });
+            
+            event.currentTarget.classList.add('selected');
+            
+            // Show appropriate payment details
+            document.getElementById('transfer-details').style.display = 'none';
+            document.getElementById('card-details').style.display = 'none';
+            
+            if (method === 'transfer') {
+                document.getElementById('transfer-details').style.display = 'block';
+            } else if (method === 'card') {
+                document.getElementById('card-details').style.display = 'block';
+            }
+        }
+
+        function processPayment() {
+            if (!selectedPaymentMethod) {
+                alert('Please select a payment method');
+                return;
+            }
+            
+            // In a real implementation, this would process the payment
+            // For this demo, we'll just show a success message and proceed
+            alert('Payment processed successfully!');
+            showSection('face-verification');
+            
+            // Initialize camera for face verification
+            initializeCamera();
+        }
+
+        // Face verification
+        let stream = null;
+        let uploadedPhoto =null;
+
+        function initializeCamera() {
+            navigator.mediaDevices.getUserMedia({ video: true })
+                .then(function(mediaStream) {
+                    stream = mediaStream;
+                    const video = document.getElementById('video');
+                    video.srcObject = mediaStream;
+                })
+                .catch(function(err) {
+                    console.error("Error accessing camera: ", err);
+                    alert('Could not access camera. Please ensure you have granted camera permissions.');
+                });
+        }
+
+        function captureFace() {
+            const video = document.getElementById('video');
+            const canvas = document.createElement('canvas');
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+            
+            const capturedPhoto = canvas.toDataURL('image/png');
+            
+            // In a real implementation, this would compare the captured photo with the uploaded one
+            // For this demo, we'll simulate a random verification result
+            const isVerified = Math.random() > 0.3; // 70% chance of success
+            
+            const resultDiv = document.getElementById('verification-result');
+            resultDiv.style.display = 'block';
+            
+            if (isVerified) {
+                resultDiv.textContent = 'Verification Successful! You are eligible to write the exam.';
+                resultDiv.className = 'verification-result success';
+                document.getElementById('next-button').style.display = 'block';
+            } else {
+                resultDiv.textContent = 'Verification Failed! Please try again later.';
+                resultDiv.className = 'verification-result error';
+                document.getElementById('next-button').style.display = 'none';
+            }
+            
+            // Stop the camera stream
+            if (stream) {
+                stream.getTracks().forEach(track => track.stop());
+            }
+        }
+
+        // Course selection
+        let selectedCourse = '';
+
+        function selectCourse(course) {
+            selectedCourse = course;
+            
+            // Update UI
+            document.querySelectorAll('.course-card').forEach(el => {
+                el.classList.remove('selected');
+            });
+            
+            event.currentTarget.classList.add('selected');
+            
+            // Show confirmation
+            const confirmationDiv = document.getElementById('course-confirmation');
+            const messageDiv = document.getElementById('selected-course-message');
+            messageDiv.textContent = `Thank you for choosing ${course}`;
+            confirmationDiv.style.display = 'block';
+        }
+
+        // Exam functionality
+        let currentQuestion = 0;
+        let userAnswers = [];
+        const totalQuestions = 50;
+
+        // Sample questions - in a real implementation, these would come from a database
+        const questions = [
+            {
+                text: "What is the capital of Nigeria?",
+                options: ["Lagos", "Abuja", "Kano", "Port Harcourt"],
+                correct: 1
+            },
+            {
+                text: "Which of these is not a programming language?",
+                options: ["Python", "ms word", "HTML", "C++"],
+                correct: 2
+            },
+            {
+                text: "What is 5 + 7?",
+                options: ["10", "11", "12", "13"],
+                correct: 2
+            },
+            // More questions would be added in a real implementation
+        ];
+
+        // Fill the rest with placeholder questions
+        for (let i = questions.length; i < totalQuestions; i++) {
+            questions.push({
+                text: `Sample question ${i+1}`,
+                options: ["Option A", "Option B", "Option C", "Option D"],
+                correct: Math.floor(Math.random() * 4)
+            });
+        }
+
+        function startExam() {
+            currentQuestion = 0;
+            userAnswers = new Array(totalQuestions).fill(null);
+            showQuestion(currentQuestion);
+            showSection('exam');
+            
+            // Set the exam course name
+            document.getElementById('exam-course-name').textContent = `${selectedCourse} Examination`;
+        }
+
+        function showQuestion(index) {
+            const question = questions[index];
+            
+            document.getElementById('question-number').textContent = `Question ${index + 1} of ${totalQuestions}`;
+            document.getElementById('question-text').textContent = question.text;
+            
+            const optionsContainer = document.getElementById('options-container');
+            optionsContainer.innerHTML = '';
+            
+            question.options.forEach((option, i) => {
+                const optionElement = document.createElement('div');
+                optionElement.className = 'option';
+                if (userAnswers[index] === i) {
+                    optionElement.classList.add('selected');
+                }
+                optionElement.textContent = option;
+                optionElement.onclick = () => selectOption(i);
+                optionsContainer.appendChild(optionElement);
+            });
+            
+            // Update navigation buttons
+            document.getElementById('prev-button').disabled = index === 0;
+            document.getElementById('next-exam-button').textContent = index === totalQuestions - 1 ? 'Submit' : 'Next';
+        }
+
+        function selectOption(optionIndex) {
+            userAnswers[currentQuestion] = optionIndex;
+            showQuestion(currentQuestion);
+        }
+
+        function previousQuestion() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                showQuestion(currentQuestion);
+            }
+        }
+
+        function nextQuestion() {
+            if (currentQuestion < totalQuestions - 1) {
+                currentQuestion++;
+                showQuestion(currentQuestion);
+            } else {
+                // Submit exam
+                alert('Exam submitted successfully!');
+                showSection('home');
+            }
+        }
+
+        // Contact form submission
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! We will get back to you soon.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>
